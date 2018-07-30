@@ -1,0 +1,12 @@
+pl\sda\fitapp\data\Place.class
+pl\sda\fitapp\data\Trainer.class
+pl\sda\fitapp\repositories\GymUserRepository.class
+pl\sda\fitapp\FitappApplication.class
+pl\sda\fitapp\MainUI.class
+pl\sda\fitapp\data\GymUser.class
+pl\sda\fitapp\data\ActivityType.class
+pl\sda\fitapp\configuration\BasicConfiguration.class
+pl\sda\fitapp\data\Activity.class
+pl\sda\fitapp\repositories\TrainerRepository.class
+pl\sda\fitapp\repositories\ActivityRepository.class
+pl\sda\fitapp\repositories\PlaceRepository.class
