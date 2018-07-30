@@ -1,31 +1,44 @@
 package pl.sda.fitapp.gui;
 
-import com.vaadin.server.FileResource;
+import com.vaadin.data.Binder;
+import com.vaadin.data.Validator;
+import com.vaadin.data.validator.EmailValidator;
+import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import pl.sda.fitapp.domains.GymUser;
+import pl.sda.fitapp.domains.UserType;
 import pl.sda.fitapp.gui.element.HeaderElement;
+import pl.sda.fitapp.gui.element.UserRegistrationFormElement;
+import pl.sda.fitapp.service.GymUserService;
+import pl.sda.fitapp.service.TrainerService;
 
-import java.io.File;
+import java.util.Objects;
 
 import static com.vaadin.ui.Alignment.MIDDLE_CENTER;
-import static com.vaadin.ui.Alignment.MIDDLE_LEFT;
 
-@SpringUI
-public class MainUI extends UI {
+@SpringUI(path = "/register_trainer")
+public class RegisterTrainerUI extends UI {
+
+    @Autowired
+    private TrainerService trainerService;
 
     @Autowired
     private HeaderElement headerElement;
+
+    @Autowired
+    private UserRegistrationFormElement userRegistrationFormElement;
+
 
     private VerticalLayout rootLayout;
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         setupLayout();
-//        displayHeader()
         rootLayout.addComponent(headerElement.displayHeader(true));
-//        displayWorkouts();
+        rootLayout.addComponent(userRegistrationFormElement.displayRegisterForm(UserType.USER));
 //            addTodoList();
 //            addDeleteButton();
     }
@@ -35,8 +48,6 @@ public class MainUI extends UI {
         rootLayout.setDefaultComponentAlignment(MIDDLE_CENTER);
         setContent(rootLayout);
     }
-
-
 
 
 }

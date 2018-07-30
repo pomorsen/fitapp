@@ -9,20 +9,28 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import pl.sda.fitapp.domains.AppUser;
 import pl.sda.fitapp.domains.GymUser;
+import pl.sda.fitapp.gui.element.HeaderElement;
 import pl.sda.fitapp.service.GymUserService;
 
 import java.io.File;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static com.vaadin.ui.Alignment.MIDDLE_CENTER;
 import static com.vaadin.ui.Alignment.MIDDLE_LEFT;
 
-@SpringUI(path = "/register")
-public class RegisterUI extends UI {
+@SpringUI(path = "/register_user")
+public class RegisterUserUI extends UI {
 
     @Autowired
     private GymUserService gymUserService;
+
+    @Autowired
+    private HeaderElement headerElement;
 
 
     private VerticalLayout rootLayout;
@@ -30,7 +38,7 @@ public class RegisterUI extends UI {
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         setupLayout();
-        displayHeader();
+        rootLayout.addComponent(headerElement.displayHeader(true));
         displayRegisterForm();
 //            addTodoList();
 //            addDeleteButton();
@@ -42,45 +50,6 @@ public class RegisterUI extends UI {
         setContent(rootLayout);
     }
 
-    private void displayHeader() {
-
-        // Horizontal panel which will hold 2 labels - logo + menu
-        HorizontalLayout menuBarLayout = new HorizontalLayout();
-        menuBarLayout.setWidth("100%");
-        menuBarLayout.setHeight("100");
-
-        // Logo
-        FileResource logoResource = new FileResource(new File("img/logo.jpg"));
-        Image logo = new Image(null, logoResource);
-        logo.setWidth("80");
-        logo.setHeight("80");
-
-
-        // Context menu
-        HorizontalLayout mainMenuButtonsLayout = new HorizontalLayout();
-        mainMenuButtonsLayout.setSpacing(true);
-        mainMenuButtonsLayout.setMargin(true);
-        mainMenuButtonsLayout.setDefaultComponentAlignment(MIDDLE_CENTER);
-
-
-        Button searchTrainingButton = new Button("Szukaj treningu");
-        Button registerNewTrainingButton = new Button("Rejestruj trening");
-
-        mainMenuButtonsLayout.addComponentsAndExpand(searchTrainingButton, registerNewTrainingButton);
-
-        // Add elements together
-        menuBarLayout.addComponent(logo);
-        menuBarLayout.setComponentAlignment(logo, MIDDLE_LEFT);
-        menuBarLayout.setExpandRatio(logo, 3);
-
-        menuBarLayout.addComponent(mainMenuButtonsLayout);
-        menuBarLayout.setExpandRatio(mainMenuButtonsLayout, 9);
-
-        // Save on Root Layout
-        rootLayout.addComponent(menuBarLayout);
-
-    }
-
     private void displayRegisterForm() {
 
         FormLayout formLayout = new FormLayout();
@@ -88,13 +57,12 @@ public class RegisterUI extends UI {
         formLayout.setMargin(false);
         formLayout.setCaption("Registration Form");
 
+
         TextField nameField = new TextField("First Name");
         TextField surnameField = new TextField("Last Name");
         TextField emailField = new TextField("Email");
         PasswordField passwordField = new PasswordField("Password");
         PasswordField confirmPasswordField = new PasswordField("Confirm Password");
-
-
 
         Binder<GymUser> binder = new Binder<>();
 

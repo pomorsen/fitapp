@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Trainer {
+public class AppUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,19 +16,6 @@ public class Trainer {
     private String password;
     private String name;
     private String surname;
-    private double rating;
-
-    public Trainer(String email, String password, String name, String surname) {
-        this.email = email;
-        this.password = password;
-        this.name = name;
-        this.surname = surname;
-    }
-
-    public Trainer() {
-
-
-    }
 
     public Long getId() {
         return id;
@@ -68,13 +55,5 @@ public class Trainer {
 
     public void setSurname(String surname) {
         this.surname = surname;
-    }
-
-    public double getRating() {
-        return rating;
-    }
-
-    public void setRating(double rating) {
-        this.rating = rating;
     }
 }
