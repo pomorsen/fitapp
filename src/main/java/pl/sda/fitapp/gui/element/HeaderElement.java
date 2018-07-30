@@ -16,7 +16,7 @@ import static com.vaadin.ui.Alignment.MIDDLE_LEFT;
 public class HeaderElement {
 
 
-    public Layout displayHeader() {
+    public Layout displayHeader(boolean isLogged) {
 
         // Horizontal panel which will hold 2 labels - logo + menu
         HorizontalLayout menuBarLayout = new HorizontalLayout();
@@ -36,11 +36,29 @@ public class HeaderElement {
         mainMenuButtonsLayout.setMargin(true);
         mainMenuButtonsLayout.setDefaultComponentAlignment(MIDDLE_CENTER);
 
-
         Button searchTrainingButton = new Button("Szukaj treningu");
         Button registerNewTrainingButton = new Button("Rejestruj trening");
 
         mainMenuButtonsLayout.addComponentsAndExpand(searchTrainingButton, registerNewTrainingButton);
+
+
+        if (isLogged) {
+            //wyloguj
+            Button logoutButton = new Button("Wyloguj");
+
+            //moje konto
+            Button accountSettingsButton = new Button("Konto");
+
+            mainMenuButtonsLayout.addComponentsAndExpand(logoutButton, accountSettingsButton);
+        } else {
+            //zaloguj
+            Button loginButoon = new Button("Zaloguj się");
+
+            //zarejestruj
+            Button registerButton = new Button("Rejestracja");
+
+            mainMenuButtonsLayout.addComponentsAndExpand(loginButoon, registerButton);
+        }
 
         // Add elements together
         menuBarLayout.addComponent(logo);
@@ -50,7 +68,9 @@ public class HeaderElement {
         menuBarLayout.addComponent(mainMenuButtonsLayout);
         menuBarLayout.setExpandRatio(mainMenuButtonsLayout, 9);
 
+
         return menuBarLayout;
     }
+
 
 }

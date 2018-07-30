@@ -24,7 +24,7 @@ public class MainUI extends UI {
     protected void init(VaadinRequest vaadinRequest) {
         setupLayout();
 //        displayHeader()
-        rootLayout.addComponent(headerElement.displayHeader());
+        rootLayout.addComponent(headerElement.displayHeader(true));
 //        displayWorkouts();
 //            addTodoList();
 //            addDeleteButton();
