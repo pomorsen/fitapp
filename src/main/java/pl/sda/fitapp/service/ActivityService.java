@@ -8,6 +8,7 @@ import pl.sda.fitapp.domains.dto.ActivityEditDto;
 import pl.sda.fitapp.repositories.ActivityRepository;
 import pl.sda.fitapp.repositories.GymUserRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -44,7 +45,7 @@ public class ActivityService {
         return Optional.empty();
     }
 
-    public Optional<Activity> editActivity(Long id, ActivityEditDto editDto){
+    public Optional<Activity> editActivity(Long id, ActivityEditDto editDto) {
         Optional<Activity> foundActivity = activityRepository.findById(id);
 
         if (activityRepository.findById(id).isPresent()) {
@@ -52,28 +53,28 @@ public class ActivityService {
 
             if (activity != null) {
 
-                if (editDto.getTrainerId() != null){
+                if (editDto.getTrainerId() != null) {
                     activity.setTrainerId(editDto.getTrainerId());
                 }
-                if (editDto.getObjectId() != null){
+                if (editDto.getObjectId() != null) {
                     activity.setObjectId(editDto.getObjectId());
                 }
-                if (editDto.getStartTime() != null){
+                if (editDto.getStartTime() != null) {
                     activity.setStartTime(editDto.getStartTime());
                 }
-                if (editDto.getMaxParticipants() > 0){
+                if (editDto.getMaxParticipants() > 0) {
                     activity.setMaxParticipants(editDto.getMaxParticipants());
                 }
-                if (editDto.getDuration() > 0){
+                if (editDto.getDuration() > 0) {
                     activity.setDuration(editDto.getDuration());
                 }
-                if (editDto.getActivityType() != null){
+                if (editDto.getActivityType() != null) {
                     activity.setActivityType(editDto.getActivityType());
                 }
-                if (editDto.getPrice() > 0){
+                if (editDto.getPrice() > 0) {
                     activity.setPrice(editDto.getPrice());
                 }
-                if (editDto.getDescription() != null){
+                if (editDto.getDescription() != null) {
                     activity.setDescription(editDto.getDescription());
                 }
 
@@ -85,14 +86,33 @@ public class ActivityService {
         return Optional.empty();
     }
 
-//    public Optional<Activity> getActivity(Long id){
-//        if (activityRepository.findById(id).isPresent()){
-//            TodoTask todoTask = todoTaskRepository.findById(id).get();
-//
-//            return Optional.of(todoTask);
-//        }
-//        return Optional.empty();
-//    }
+    public Optional<Activity> getActivity(Long id) {
+        if (activityRepository.findById(id).isPresent()) {
+            Activity activity = activityRepository.findById(id).get();
 
-    // , get, list, remove
+            return Optional.of(activity);
+        }
+        return Optional.empty();
+    }
+
+    public List<Activity> getAllActivites() {
+        List<Activity> list = activityRepository.findAll();
+
+        return list;
+    }
+
+    public Optional<Activity> deleteActivity(Long id) {
+        if (id != null) {
+            Optional<Activity> foundActivity = activityRepository.findById(id);
+            if (foundActivity.isPresent()) {
+                Activity activity = foundActivity.get();
+
+                activityRepository.delete(activity);
+
+                return Optional.of(activity);
+            }
+        }
+
+        return Optional.empty();
+    }
 }

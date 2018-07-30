@@ -27,5 +27,4 @@ public class GymUserService {
         return Optional.empty();
     }
 
-
 }
