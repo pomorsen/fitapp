@@ -34,6 +34,9 @@ public class Activity {
         this.activityType = activityType;
     }
 
+    public Activity() {
+    }
+
     public void addGymUserToList(GymUser gymUser){
         gymUsers.add(gymUser);
     }
