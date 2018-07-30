@@ -60,6 +60,7 @@ public class HeaderElement {
             mainMenuButtonsLayout.addComponentsAndExpand(loginButoon, registerButton);
         }
 
+        // ...
         // Add elements together
         menuBarLayout.addComponent(logo);
         menuBarLayout.setComponentAlignment(logo, MIDDLE_LEFT);
