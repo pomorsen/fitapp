@@ -16,7 +16,6 @@ public class GymUser {
     private String password;
     private String name;
     private String surname;
-    private double rating;
 
     public GymUser(String email, String password, String name, String surname) {
         this.email = email;
@@ -69,11 +68,4 @@ public class GymUser {
         this.surname = surname;
     }
 
-    public double getRating() {
-        return rating;
-    }
-
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
 }
