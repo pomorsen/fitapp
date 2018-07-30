@@ -1,16 +1,10 @@
-package pl.sda.fitapp.domains;
+package pl.sda.fitapp.domains.dto;
 
-import javax.persistence.*;
+import pl.sda.fitapp.domains.ActivityType;
+
 import java.time.LocalDateTime;
-import java.util.List;
 
-@Entity
-public class Activity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class ActivityEditDto {
     private Long trainerId;
     private Long objectId;
     private LocalDateTime startTime;
@@ -20,30 +14,7 @@ public class Activity {
     private String description;
     private ActivityType activityType;
 
-    @ManyToMany
-    private List<GymUser> gymUsers;
-
-    public Activity(Long trainerId, Long objectId, LocalDateTime startTime, int duration, int maxParticipants, double price, String description, ActivityType activityType) {
-        this.trainerId = trainerId;
-        this.objectId = objectId;
-        this.startTime = startTime;
-        this.duration = duration;
-        this.maxParticipants = maxParticipants;
-        this.price = price;
-        this.description = description;
-        this.activityType = activityType;
-    }
-
-    public void addGymUserToList(GymUser gymUser){
-        gymUsers.add(gymUser);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public ActivityEditDto() {
     }
 
     public Long getTrainerId() {
@@ -109,14 +80,4 @@ public class Activity {
     public void setActivityType(ActivityType activityType) {
         this.activityType = activityType;
     }
-
-    public List<GymUser> getGymUsers() {
-        return gymUsers;
-    }
-
-    public void setGymUsers(List<GymUser> gymUsers) {
-        this.gymUsers = gymUsers;
-    }
-
-
 }

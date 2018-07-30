@@ -14,7 +14,7 @@ import pl.sda.fitapp.service.TrainerService;
 import java.util.Objects;
 
 @Service
-public class UserRegistrationFormElement {
+public class TrainerRegistrationFormElement {
 
     @Autowired
     private TrainerService trainerService;

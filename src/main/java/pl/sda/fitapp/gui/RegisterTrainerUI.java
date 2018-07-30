@@ -1,21 +1,13 @@
 package pl.sda.fitapp.gui;
 
-import com.vaadin.data.Binder;
-import com.vaadin.data.Validator;
-import com.vaadin.data.validator.EmailValidator;
-import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import pl.sda.fitapp.domains.GymUser;
 import pl.sda.fitapp.domains.UserType;
 import pl.sda.fitapp.gui.element.HeaderElement;
-import pl.sda.fitapp.gui.element.UserRegistrationFormElement;
-import pl.sda.fitapp.service.GymUserService;
+import pl.sda.fitapp.gui.element.TrainerRegistrationFormElement;
 import pl.sda.fitapp.service.TrainerService;
-
-import java.util.Objects;
 
 import static com.vaadin.ui.Alignment.MIDDLE_CENTER;
 
@@ -29,7 +21,7 @@ public class RegisterTrainerUI extends UI {
     private HeaderElement headerElement;
 
     @Autowired
-    private UserRegistrationFormElement userRegistrationFormElement;
+    private TrainerRegistrationFormElement userRegistrationFormElement;
 
 
     private VerticalLayout rootLayout;
