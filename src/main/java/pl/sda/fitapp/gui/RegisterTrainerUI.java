@@ -30,7 +30,7 @@ public class RegisterTrainerUI extends UI {
     protected void init(VaadinRequest vaadinRequest) {
         setupLayout();
         rootLayout.addComponent(headerElement.displayHeader(true));
-        rootLayout.addComponent(userRegistrationFormElement.displayRegisterForm(UserType.USER));
+        rootLayout.addComponent(userRegistrationFormElement.displayRegisterForm(UserType.TRAINER));
 //            addTodoList();
 //            addDeleteButton();
     }

@@ -16,6 +16,18 @@ public class GymUser {
     private String password;
     private String name;
     private String surname;
+    private double rating;
+
+    public GymUser(String email, String password, String name, String surname) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+    }
+
+    public GymUser() {
+
+    }
 
     public Long getId() {
         return id;
@@ -55,5 +67,13 @@ public class GymUser {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 }
