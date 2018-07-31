@@ -24,14 +24,13 @@ public class AuthService {
     private static final String COOKIE_NAME = "remember-me";
     public static final String SESSION_USERNAME = "username";
 
-    public static boolean isAuthenticated() {
+    public boolean isAuthenticated() {
         return VaadinSession.getCurrent().getAttribute(SESSION_USERNAME) != null || loginRememberedUser();
     }
 
     public Long login(String username, String password, boolean rememberMe, String userType) {
-        if (userService.isAuthenticUser(username, password, userType) > 0) {
+            if (userService.isAuthenticUser(username, password, userType) > 0) {
             VaadinSession.getCurrent().setAttribute(SESSION_USERNAME, username);
-
             if (rememberMe) {
                 rememberUser(username);
             }

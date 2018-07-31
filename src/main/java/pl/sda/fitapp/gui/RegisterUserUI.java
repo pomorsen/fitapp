@@ -35,7 +35,7 @@ public class RegisterUserUI extends UI {
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         setupLayout();
-        rootLayout.addComponent(headerElement.displayHeader(true));
+        rootLayout.addComponent(headerElement.displayHeader());
         rootLayout.addComponent(userRegistrationFormElement.displayRegisterForm(UserType.USER));
 
 //            addTodoList();

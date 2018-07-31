@@ -32,12 +32,12 @@ public class UserService {
     private static Map<String, String> rememberedUsers = new HashMap<>();
 
     public Long isAuthenticUser(String username, String password, String userType) {
-        if (userType.equals("TRAINER")) {
+        if (userType.equals("Trener")) {
             Optional<Trainer> searchTrainer = trainerRepository.findByEmailAndPassword(username, password);
             if (searchTrainer.isPresent()){
                 return searchTrainer.get().getId();
             }
-        } else if (userType.equals("USER")){
+        } else if (userType.equals("Użytkownik")){
             Optional<GymUser> searchGymUser = gymUserRepository.findByEmailAndPassword(username,password);
             if(searchGymUser.isPresent()){
                 return searchGymUser.get().getId();

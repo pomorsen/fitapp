@@ -15,12 +15,13 @@ import java.util.List;
 /**
  * @author Alejandro Duarte.
  */
+@Service
 public class PublicComponent extends CustomComponent {
 
     @Autowired
     private AuthService authService;
 
-    public PublicComponent() {
+    public Layout getPublicComponent() {
 
         List<String> userTypes = Arrays.asList("Użytkownik", "Trener");
         RadioButtonGroup<String> userType = new RadioButtonGroup<>("Wybierz rodzaj użytkownika", userTypes);
@@ -29,6 +30,7 @@ public class PublicComponent extends CustomComponent {
                 String.valueOf(event.getValue()),
                 Notification.Type.TRAY_NOTIFICATION));
         //
+        userType.setSelectedItem("Użytkownik");
 
         TextField username = new TextField("Username");
         username.focus();
@@ -37,18 +39,21 @@ public class PublicComponent extends CustomComponent {
 
         CheckBox rememberMe = new CheckBox("Remember me");
 
-        Button button = new Button("Login", e -> onLogin(username.getValue(), password.getValue(), rememberMe.getValue(), userType.getValue()));
+        Button button = new Button("Login", e -> onLogin(username.getValue(),
+                password.getValue(),
+                rememberMe.getValue(),
+                userType.getValue())
+        );
         button.setClickShortcut(ShortcutAction.KeyCode.ENTER);
 
-        FormLayout formLayout = new FormLayout(username, password, button, rememberMe);
+        FormLayout formLayout = new FormLayout(userType, username, password, button, rememberMe);
         formLayout.setSizeUndefined();
 
         VerticalLayout layout = new VerticalLayout(formLayout);
         layout.setSizeFull();
         layout.setComponentAlignment(formLayout, Alignment.MIDDLE_CENTER);
 
-        setCompositionRoot(layout);
-        setSizeFull();
+        return (layout);
     }
 
     private void onLogin(String username, String password, boolean rememberMe, String userType) {

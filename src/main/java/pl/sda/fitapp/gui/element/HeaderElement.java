@@ -5,7 +5,9 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.Layout;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.sda.fitapp.authorization.service.AuthService;
 
 import java.io.File;
 
@@ -15,8 +17,12 @@ import static com.vaadin.ui.Alignment.MIDDLE_LEFT;
 @Service
 public class HeaderElement {
 
+    @Autowired
+    private AuthService authService;
 
-    public Layout displayHeader(boolean isLogged) {
+    public Layout displayHeader() {
+
+        boolean isLogged = authService.isAuthenticated();
 
         // Horizontal panel which will hold 2 labels - logo + menu
         HorizontalLayout menuBarLayout = new HorizontalLayout();
