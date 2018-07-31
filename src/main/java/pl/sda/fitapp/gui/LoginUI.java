@@ -42,44 +42,44 @@ public class LoginUI extends UI {
         setContent(rootLayout);
     }
 
-        private void displayHeader() {
+    private void displayHeader() {
 
-            // Horizontal panel which will hold 2 labels - logo + menu
-            HorizontalLayout menuBarLayout = new HorizontalLayout();
-            menuBarLayout.setWidth("100%");
-            menuBarLayout.setHeight("100");
+        // Horizontal panel which will hold 2 labels - logo + menu
+        HorizontalLayout menuBarLayout = new HorizontalLayout();
+        menuBarLayout.setWidth("100%");
+        menuBarLayout.setHeight("100");
 
-            // Logo
-            FileResource logoResource = new FileResource(new File("img/logo.jpg"));
-            Image logo = new Image(null, logoResource);
-            logo.setWidth("80");
-            logo.setHeight("80");
-
-
-            // Context menu
-            HorizontalLayout mainMenuButtonsLayout = new HorizontalLayout();
-            mainMenuButtonsLayout.setSpacing(true);
-            mainMenuButtonsLayout.setMargin(true);
-            mainMenuButtonsLayout.setDefaultComponentAlignment(MIDDLE_CENTER);
+        // Logo
+        FileResource logoResource = new FileResource(new File("img/logo.jpg"));
+        Image logo = new Image(null, logoResource);
+        logo.setWidth("80");
+        logo.setHeight("80");
 
 
-            Button searchTrainingButton = new Button("Szukaj treningu");
-            Button registerNewTrainingButton = new Button("Rejestruj trening");
+        // Context menu
+        HorizontalLayout mainMenuButtonsLayout = new HorizontalLayout();
+        mainMenuButtonsLayout.setSpacing(true);
+        mainMenuButtonsLayout.setMargin(true);
+        mainMenuButtonsLayout.setDefaultComponentAlignment(MIDDLE_CENTER);
 
-            mainMenuButtonsLayout.addComponentsAndExpand(searchTrainingButton, registerNewTrainingButton);
 
-            // Add elements together
-            menuBarLayout.addComponent(logo);
-            menuBarLayout.setComponentAlignment(logo, MIDDLE_LEFT);
-            menuBarLayout.setExpandRatio(logo, 3);
+        Button searchTrainingButton = new Button("Szukaj treningu");
+        Button registerNewTrainingButton = new Button("Rejestruj trening");
 
-            menuBarLayout.addComponent(mainMenuButtonsLayout);
-            menuBarLayout.setExpandRatio(mainMenuButtonsLayout, 9);
+        mainMenuButtonsLayout.addComponentsAndExpand(searchTrainingButton, registerNewTrainingButton);
 
-            // Save on Root Layout
-            rootLayout.addComponent(menuBarLayout);
+        // Add elements together
+        menuBarLayout.addComponent(logo);
+        menuBarLayout.setComponentAlignment(logo, MIDDLE_LEFT);
+        menuBarLayout.setExpandRatio(logo, 3);
 
-        }
+        menuBarLayout.addComponent(mainMenuButtonsLayout);
+        menuBarLayout.setExpandRatio(mainMenuButtonsLayout, 9);
+
+        // Save on Root Layout
+        rootLayout.addComponent(menuBarLayout);
+
+    }
 
     private void displayLoginForm() {
 
@@ -112,7 +112,7 @@ public class LoginUI extends UI {
                 event -> {
                     String caption = "";
                     Notification.Type notificationType = Notification.Type.TRAY_NOTIFICATION;
-                    if(gymUserService.loginUser(binder.getBean()).isPresent()){
+                    if (gymUserService.loginUser(binder.getBean()).isPresent()) {
                         caption = "Welcome!";
                         //getUI().getPage().open("/user-data?userId=" + String.valueOf(addPerson),null);
                     } else {
@@ -132,8 +132,6 @@ public class LoginUI extends UI {
         );
 
         rootLayout.addComponent(formLayout);
-
-
 
 
     }
