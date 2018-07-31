@@ -20,7 +20,6 @@ public class AuthService {
     @Autowired
     private UserService userService;
 
-
     private static final String COOKIE_NAME = "remember-me";
     public static final String SESSION_USERNAME = "username";
 

@@ -6,10 +6,14 @@ import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.sda.fitapp.domains.Activity;
+import pl.sda.fitapp.gui.element.HeaderElement;
 import pl.sda.fitapp.service.ActivityService;
 import pl.sda.fitapp.service.TrainerService;
+
+import static com.vaadin.ui.Alignment.MIDDLE_CENTER;
 
 @SpringUI(path = "/activities_results")
 public class ActivitiesResultsUI extends UI {
@@ -17,10 +21,28 @@ public class ActivitiesResultsUI extends UI {
     @Autowired
     private ActivityService activityService;
 
+    @Autowired
+    private HeaderElement headerElement;
+
+    private VerticalLayout rootLayout;
+
     @Override
     protected void init(VaadinRequest vaadinRequest) {
+        setupLayout();
+        rootLayout.addComponent(headerElement.displayHeader());
+        displayActivities();
+
+    }
+
+    private void setupLayout() {
+        rootLayout = new VerticalLayout();
+        rootLayout.setDefaultComponentAlignment(MIDDLE_CENTER);
+        setContent(rootLayout);
+    }
+
+    private void displayActivities() {
         HorizontalLayout horizontalGridLayout = new HorizontalLayout();
-        horizontalGridLayout.setWidth("100%");
+        horizontalGridLayout.setWidth("80%");
         ListDataProvider<Activity> dataProvider = new ListDataProvider(activityService.getAllActivites());
 
         Grid<Activity> grid = new Grid<>();
@@ -42,8 +64,9 @@ public class ActivitiesResultsUI extends UI {
         grid.addColumn(Activity::getDescription).setCaption("Description");
         horizontalGridLayout.addComponent(grid);
 
-        grid.setWidth("80%");
-        setContent(horizontalGridLayout);
+        grid.setWidth("100%");
 
+        horizontalGridLayout.setDefaultComponentAlignment(MIDDLE_CENTER);
+        rootLayout.addComponent(horizontalGridLayout);
     }
 }
