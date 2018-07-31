@@ -12,13 +12,10 @@ import pl.sda.fitapp.service.ActivityService;
 import pl.sda.fitapp.service.TrainerService;
 
 @SpringUI(path = "/activities_results")
-public class ActivitiesResults extends UI {
+public class ActivitiesResultsUI extends UI {
 
     @Autowired
     private ActivityService activityService;
-
-    @Autowired
-    private TrainerService trainerService;
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
