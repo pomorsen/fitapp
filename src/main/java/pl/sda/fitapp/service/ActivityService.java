@@ -7,6 +7,7 @@ import pl.sda.fitapp.domains.GymUser;
 import pl.sda.fitapp.domains.dto.ActivityEditDto;
 import pl.sda.fitapp.repositories.ActivityRepository;
 import pl.sda.fitapp.repositories.GymUserRepository;
+import pl.sda.fitapp.repositories.TrainerRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +20,9 @@ public class ActivityService {
 
     @Autowired
     private GymUserRepository gymUserRepository;
+
+    @Autowired
+    private TrainerRepository trainerRepository;
 
     public Long addActivity(Activity activity) {
         activityRepository.save(activity);
@@ -53,11 +57,11 @@ public class ActivityService {
 
             if (activity != null) {
 
-                if (editDto.getTrainerId() != null) {
-                    activity.setTrainerId(editDto.getTrainerId());
+                if (editDto.getTrainer() != null) {
+                    activity.setTrainer(editDto.getTrainer());
                 }
-                if (editDto.getObjectId() != null) {
-                    activity.setObjectId(editDto.getObjectId());
+                if (editDto.getPlace() != null) {
+                    activity.setPlace(editDto.getPlace());
                 }
                 if (editDto.getStartTime() != null) {
                     activity.setStartTime(editDto.getStartTime());

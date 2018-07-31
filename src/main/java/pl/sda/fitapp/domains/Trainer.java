@@ -77,4 +77,9 @@ public class Trainer {
     public void setRating(double rating) {
         this.rating = rating;
     }
+
+    @Override
+    public String toString() {
+        return  name + " " + surname;
+    }
 }

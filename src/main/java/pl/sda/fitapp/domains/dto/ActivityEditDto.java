@@ -1,12 +1,14 @@
 package pl.sda.fitapp.domains.dto;
 
 import pl.sda.fitapp.domains.ActivityType;
+import pl.sda.fitapp.domains.Place;
+import pl.sda.fitapp.domains.Trainer;
 
 import java.time.LocalDateTime;
 
 public class ActivityEditDto {
-    private Long trainerId;
-    private Long objectId;
+    private Trainer trainer;
+    private Place place;
     private LocalDateTime startTime;
     private int duration;
     private int maxParticipants;
@@ -17,20 +19,20 @@ public class ActivityEditDto {
     public ActivityEditDto() {
     }
 
-    public Long getTrainerId() {
-        return trainerId;
+    public Trainer getTrainer() {
+        return trainer;
     }
 
-    public void setTrainerId(Long trainerId) {
-        this.trainerId = trainerId;
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
     }
 
-    public Long getObjectId() {
-        return objectId;
+    public Place getPlace() {
+        return place;
     }
 
-    public void setObjectId(Long objectId) {
-        this.objectId = objectId;
+    public void setPlace(Place place) {
+        this.place = place;
     }
 
     public LocalDateTime getStartTime() {
@@ -80,4 +82,6 @@ public class ActivityEditDto {
     public void setActivityType(ActivityType activityType) {
         this.activityType = activityType;
     }
+
+
 }

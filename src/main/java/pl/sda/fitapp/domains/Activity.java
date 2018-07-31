@@ -11,8 +11,12 @@ public class Activity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long trainerId;
-    private Long objectId;
+    @ManyToOne
+    private Trainer trainer;
+
+    @ManyToOne
+    private Place place;
+
     private LocalDateTime startTime;
     private int duration;
     private int maxParticipants;
@@ -23,9 +27,9 @@ public class Activity {
     @ManyToMany
     private List<GymUser> gymUsers;
 
-    public Activity(Long trainerId, Long objectId, LocalDateTime startTime, int duration, int maxParticipants, double price, String description, ActivityType activityType) {
-        this.trainerId = trainerId;
-        this.objectId = objectId;
+    public Activity(Trainer trainer, Place place, LocalDateTime startTime, int duration, int maxParticipants, double price, String description, ActivityType activityType) {
+        this.trainer = trainer;
+        this.place = place;
         this.startTime = startTime;
         this.duration = duration;
         this.maxParticipants = maxParticipants;
@@ -37,7 +41,7 @@ public class Activity {
     public Activity() {
     }
 
-    public void addGymUserToList(GymUser gymUser){
+    public void addGymUserToList(GymUser gymUser) {
         gymUsers.add(gymUser);
     }
 
@@ -49,20 +53,20 @@ public class Activity {
         this.id = id;
     }
 
-    public Long getTrainerId() {
-        return trainerId;
+    public Trainer getTrainer() {
+        return trainer;
     }
 
-    public void setTrainerId(Long trainerId) {
-        this.trainerId = trainerId;
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
     }
 
-    public Long getObjectId() {
-        return objectId;
+    public Place getPlace() {
+        return place;
     }
 
-    public void setObjectId(Long objectId) {
-        this.objectId = objectId;
+    public void setPlace(Place place) {
+        this.place = place;
     }
 
     public LocalDateTime getStartTime() {

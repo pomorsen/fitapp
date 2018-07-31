@@ -46,4 +46,9 @@ public class Place {
     public void setObjectAddress(String objectAddress) {
         this.objectAddress = objectAddress;
     }
+
+    @Override
+    public String toString() {
+        return objectName + ": " + objectAddress;
+    }
 }
