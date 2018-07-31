@@ -59,6 +59,7 @@ public class PublicComponent extends CustomComponent {
     private void onLogin(String username, String password, boolean rememberMe, String userType) {
         if (authService.login(username, password, rememberMe, userType) > 0) {
             VaadinUI ui = (VaadinUI) UI.getCurrent();
+            ui.getPage().reload();
             ui.showPrivateComponent();
         } else {
             Notification.show("Invalid credentials (for demo use: admin/password)", Notification.Type.ERROR_MESSAGE);

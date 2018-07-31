@@ -1,12 +1,13 @@
 package pl.sda.fitapp.authorization.ui;
 
+import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.sda.fitapp.authorization.service.AuthService;
-import pl.sda.fitapp.gui.element.HeaderElement;
+import pl.sda.fitapp.gui.element.CommonUIElement;
 
 import static com.vaadin.ui.Alignment.MIDDLE_CENTER;
 
@@ -24,7 +25,7 @@ public class VaadinUI extends UI {
     private PrivateComponent privateComponent;
 
     @Autowired
-    private HeaderElement headerElement;
+    private CommonUIElement commonUIElement;
 
     @Autowired
     private AuthService authService;
@@ -34,7 +35,7 @@ public class VaadinUI extends UI {
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         setupLayout();
-        rootLayout.addComponent(headerElement.displayHeader());
+        rootLayout.addComponent(commonUIElement.displayHeader(Page.getCurrent()));
         if (!authService.isAuthenticated()) {
             showPublicComponent();
         } else {
@@ -47,7 +48,7 @@ public class VaadinUI extends UI {
     }
 
     public void showPrivateComponent() {
-        rootLayout.addComponent(privateComponent.getPrivateComponent());;
+        rootLayout.addComponent(privateComponent.getPrivateComponent());
     }
 
     private void setupLayout() {

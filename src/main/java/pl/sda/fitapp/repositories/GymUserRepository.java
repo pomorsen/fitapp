@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface GymUserRepository extends JpaRepository<GymUser,Long> {
     Optional<GymUser> findByEmailAndPassword(String email, String password);
+    Optional<GymUser> findByNameAndPassword(String name, String password);
 }

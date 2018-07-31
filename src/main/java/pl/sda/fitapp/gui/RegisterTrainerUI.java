@@ -1,11 +1,12 @@
 package pl.sda.fitapp.gui;
 
+import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.sda.fitapp.domains.UserType;
-import pl.sda.fitapp.gui.element.HeaderElement;
+import pl.sda.fitapp.gui.element.CommonUIElement;
 import pl.sda.fitapp.gui.element.TrainerRegistrationFormElement;
 import pl.sda.fitapp.service.TrainerService;
 
@@ -18,7 +19,7 @@ public class RegisterTrainerUI extends UI {
     private TrainerService trainerService;
 
     @Autowired
-    private HeaderElement headerElement;
+    private CommonUIElement commonUIElement;
 
     @Autowired
     private TrainerRegistrationFormElement userRegistrationFormElement;
@@ -29,7 +30,7 @@ public class RegisterTrainerUI extends UI {
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         setupLayout();
-        rootLayout.addComponent(headerElement.displayHeader());
+        rootLayout.addComponent(commonUIElement.displayHeader(Page.getCurrent()));
         rootLayout.addComponent(userRegistrationFormElement.displayRegisterForm(UserType.TRAINER));
 //            addTodoList();
 //            addDeleteButton();

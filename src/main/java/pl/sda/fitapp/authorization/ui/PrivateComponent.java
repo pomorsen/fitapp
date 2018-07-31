@@ -12,20 +12,23 @@ import pl.sda.fitapp.authorization.service.AuthService;
  */
 @Service
 public class PrivateComponent extends CustomComponent {
-    
+
     public Layout getPrivateComponent() {
         String username = (String) VaadinSession.getCurrent().getAttribute(AuthService.SESSION_USERNAME);
 
         Label label = new Label("Welcome, " + username);
         label.addStyleName(ValoTheme.LABEL_HUGE);
 
-        Button button = new Button("Sign out", this::onLogout);
+        //Button button = new Button("Sign out", event -> onLogout(event));
 
-        return new VerticalLayout(label, button);
+        VerticalLayout verticalLayout = new VerticalLayout(label);
+        verticalLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
+
+        return verticalLayout;
     }
 
-    private void onLogout(Button.ClickEvent event) {
-        AuthService.logOut();
-    }
+//    public void onLogout(Button.ClickEvent event) {
+//        AuthService.logOut();
+//    }
 
 }

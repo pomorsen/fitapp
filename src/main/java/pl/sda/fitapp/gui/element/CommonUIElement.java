@@ -1,13 +1,13 @@
 package pl.sda.fitapp.gui.element;
 
 import com.vaadin.server.FileResource;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Image;
-import com.vaadin.ui.Layout;
+import com.vaadin.server.Page;
+import com.vaadin.server.VaadinRequest;
+import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.fitapp.authorization.service.AuthService;
+import pl.sda.fitapp.authorization.ui.PrivateComponent;
 
 import java.io.File;
 
@@ -15,12 +15,12 @@ import static com.vaadin.ui.Alignment.MIDDLE_CENTER;
 import static com.vaadin.ui.Alignment.MIDDLE_LEFT;
 
 @Service
-public class HeaderElement {
+public class CommonUIElement{
 
     @Autowired
     private AuthService authService;
 
-    public Layout displayHeader() {
+    public Layout displayHeader(Page page) {
 
         boolean isLogged = authService.isAuthenticated();
 
@@ -51,6 +51,9 @@ public class HeaderElement {
         if (isLogged) {
             //wyloguj
             Button logoutButton = new Button("Wyloguj");
+            logoutButton.addClickListener(event -> {
+               authService.logOut();
+            });
 
             //moje konto
             Button accountSettingsButton = new Button("Konto");
@@ -58,12 +61,19 @@ public class HeaderElement {
             mainMenuButtonsLayout.addComponentsAndExpand(logoutButton, accountSettingsButton);
         } else {
             //zaloguj
-            Button loginButoon = new Button("Zaloguj się");
+            Button loginButton = new Button("Zaloguj się");
+            loginButton.addClickListener(event -> {
+                page.setLocation("/auth_login");
+            });
 
             //zarejestruj
             Button registerButton = new Button("Rejestracja");
+            registerButton.addClickListener(event -> {
+                page.setLocation("/register");
+            });
 
-            mainMenuButtonsLayout.addComponentsAndExpand(loginButoon, registerButton);
+
+            mainMenuButtonsLayout.addComponentsAndExpand(loginButton, registerButton);
         }
 
         // ...
@@ -77,6 +87,11 @@ public class HeaderElement {
 
 
         return menuBarLayout;
+    }
+
+    public Layout setupLayout(VerticalLayout rootLayout) {
+        rootLayout.setDefaultComponentAlignment(MIDDLE_CENTER);
+        return rootLayout;
     }
 
 

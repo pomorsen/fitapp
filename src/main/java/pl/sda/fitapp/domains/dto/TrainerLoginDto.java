@@ -3,6 +3,7 @@ package pl.sda.fitapp.domains.dto;
 public class TrainerLoginDto {
     private String email;
     private String password;
+    private String name;
 
     public TrainerLoginDto() {
     }
@@ -10,6 +11,14 @@ public class TrainerLoginDto {
     public TrainerLoginDto(String email, String password) {
         this.email = email;
         this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {

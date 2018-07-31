@@ -1,20 +1,14 @@
 package pl.sda.fitapp.gui;
 
-import com.vaadin.data.Binder;
-import com.vaadin.data.Validator;
-import com.vaadin.data.validator.EmailValidator;
-import com.vaadin.data.validator.StringLengthValidator;
+import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import pl.sda.fitapp.domains.GymUser;
 import pl.sda.fitapp.domains.UserType;
-import pl.sda.fitapp.gui.element.HeaderElement;
+import pl.sda.fitapp.gui.element.CommonUIElement;
 import pl.sda.fitapp.gui.element.UserRegistrationFormElement;
 import pl.sda.fitapp.service.GymUserService;
-
-import java.util.Objects;
 
 import static com.vaadin.ui.Alignment.MIDDLE_CENTER;
 
@@ -25,7 +19,7 @@ public class RegisterUserUI extends UI {
     private GymUserService gymUserService;
 
     @Autowired
-    private HeaderElement headerElement;
+    private CommonUIElement commonUIElement;
 
     @Autowired
     private UserRegistrationFormElement userRegistrationFormElement;
@@ -35,7 +29,7 @@ public class RegisterUserUI extends UI {
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         setupLayout();
-        rootLayout.addComponent(headerElement.displayHeader());
+        rootLayout.addComponent(commonUIElement.displayHeader(Page.getCurrent()));
         rootLayout.addComponent(userRegistrationFormElement.displayRegisterForm(UserType.USER));
 
 //            addTodoList();

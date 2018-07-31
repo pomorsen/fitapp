@@ -1,6 +1,7 @@
 package pl.sda.fitapp.gui;
 
 import com.vaadin.data.provider.ListDataProvider;
+import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.Grid;
@@ -9,9 +10,8 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.sda.fitapp.domains.Activity;
-import pl.sda.fitapp.gui.element.HeaderElement;
+import pl.sda.fitapp.gui.element.CommonUIElement;
 import pl.sda.fitapp.service.ActivityService;
-import pl.sda.fitapp.service.TrainerService;
 
 import static com.vaadin.ui.Alignment.MIDDLE_CENTER;
 
@@ -22,14 +22,14 @@ public class ActivitiesResultsUI extends UI {
     private ActivityService activityService;
 
     @Autowired
-    private HeaderElement headerElement;
+    private CommonUIElement commonUIElement;
 
     private VerticalLayout rootLayout;
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         setupLayout();
-        rootLayout.addComponent(headerElement.displayHeader());
+        rootLayout.addComponent(commonUIElement.displayHeader(Page.getCurrent()));
         displayActivities();
 
     }
