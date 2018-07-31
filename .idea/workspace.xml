@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b9070d2d-e01d-43e9-9be0-8d83e1abfea4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/fitapp/authorization/ui/PrivateComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/fitapp/authorization/ui/PrivateComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/fitapp/authorization/ui/PublicComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/fitapp/authorization/ui/PublicComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/fitapp/authorization/ui/VaadinUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/fitapp/authorization/ui/VaadinUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/fitapp/domains/dto/TrainerLoginDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/fitapp/domains/dto/TrainerLoginDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/fitapp/gui/ActivitiesResultsUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/fitapp/gui/ActivitiesResultsUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/fitapp/gui/MainUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/fitapp/gui/MainUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/fitapp/gui/RegisterTrainerUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/fitapp/gui/RegisterTrainerUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/fitapp/gui/RegisterUserUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/fitapp/gui/RegisterUserUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/fitapp/gui/element/HeaderElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/fitapp/gui/element/CommonUIElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/fitapp/repositories/GymUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/fitapp/repositories/GymUserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/sda/fitapp/repositories/TrainerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/sda/fitapp/repositories/TrainerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/sda/fitapp/gui/element/HeaderElement.class" beforeDir="false" />
+    <list default="true" id="b9070d2d-e01d-43e9-9be0-8d83e1abfea4" name="Default Changelist" comment="Default Changelist">
+      <change beforePath="$PROJECT_DIR$/target/classes/pl/sda/fitapp/gui/MainUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/sda/fitapp/gui/MainUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pl/sda/fitapp/repositories/GymUserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/sda/fitapp/repositories/GymUserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pl/sda/fitapp/repositories/TrainerRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/sda/fitapp/repositories/TrainerRepository.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -129,20 +118,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TrainerLoginDto.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pl/sda/fitapp/domains/dto/TrainerLoginDto.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
-              <folding>
-                <element signature="e#370#371#0" expanded="true" />
-                <element signature="e#410#411#0" expanded="true" />
-                <element signature="e#442#443#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="GymUserLoginDto.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pl/sda/fitapp/domains/dto/GymUserLoginDto.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -161,7 +136,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommonUIElement.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CommonUIElement.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pl/sda/fitapp/gui/element/CommonUIElement.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
@@ -169,6 +144,15 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActivitiesResultsUI.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pl/sda/fitapp/gui/ActivitiesResultsUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="30" column="22" lean-forward="true" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -403,24 +387,24 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="pl.sda.fitapp.gui" />
-      <recent name="pl.sda.fitapp" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="pl.sda.fitapp.domains.dto" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="pl.sda.fitapp" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\JAVA\ProjektKoncowy\fitapptemp\src\main\resources\templates" />
+      <recent name="C:\JAVA\ProjektKoncowy\fitapptemp\src\main\resources\webapp\VAADIN\themes\fitapp\layouts" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="pl.sda.fitapp.gui" />
       <recent name="pl.sda.fitapp" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\JAVA\ProjektKoncowyFINAL\fitapptemp\src\main\java\pl\sda\fitapp\authorization" />
       <recent name="authorization" />
       <recent name="C:\JAVA\ProjektKoncowy\fitapptemp\src\main\java\pl\sda\fitapp" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="pl.sda.fitapp.domains.dto" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\JAVA\ProjektKoncowy\fitapptemp\src\main\resources\templates" />
-      <recent name="C:\JAVA\ProjektKoncowy\fitapptemp\src\main\resources\webapp\VAADIN\themes\fitapp\layouts" />
     </key>
   </component>
   <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
@@ -578,11 +562,25 @@
       <option name="project" value="LOCAL" />
       <updated>1533057785923</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Default Changelist">
+      <created>1533062871950</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1533062871950</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Default Changelist">
+      <created>1533063002934</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1533063002934</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27746000" />
+    <option name="totallyTimeSpent" value="28152000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -988,13 +986,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/sda/fitapp/gui/ActivitiesResultsUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="31" column="47" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/sda/fitapp/gui/RegisterTrainerUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
@@ -1121,6 +1112,13 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/sda/fitapp/gui/ActivitiesResultsUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="30" column="22" lean-forward="true" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
         </state>
       </provider>
     </entry>
