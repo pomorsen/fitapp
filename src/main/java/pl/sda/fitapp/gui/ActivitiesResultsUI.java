@@ -8,6 +8,7 @@ import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.renderers.ButtonRenderer;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.sda.fitapp.domains.Activity;
 import pl.sda.fitapp.gui.element.CommonUIElement;
@@ -48,9 +49,6 @@ public class ActivitiesResultsUI extends UI {
         Grid<Activity> grid = new Grid<>();
         grid.setDataProvider(dataProvider);
 
-        // dodać wspólną klasę dla Activity i Trenera i wrzucić do ListDataProvidera
-        // wtedy będzie dostęp do imienia trenera
-
 //        grid.addColumn(trener -> trener.getTrainer().getName()).setCaption("Imie");
 //        grid.addColumn(trener -> trener.getTrainer().getSurname()).setCaption("Nazwisko");
 
@@ -62,6 +60,13 @@ public class ActivitiesResultsUI extends UI {
         grid.addColumn(Activity::getMaxParticipants).setCaption("Max Participants");
         grid.addColumn(Activity::getPrice).setCaption("Price");
         grid.addColumn(Activity::getDescription).setCaption("Description");
+        grid.addColumn(person -> "Join",
+                new ButtonRenderer(clickEvent -> {
+                }));
+        // TODO:
+        // Dodać logikę dla sprawdzenia czy użytkownik jest zalogowany
+        // następnie jeżeli chce się dodać do zadania czy są jeszcze miejsca wolne i czy nie próbuje się dodać po raz drugi
+        // wyświetlić wynik naciśnięcia przycisku Dodano lub Nie Dodano + ew. komunikat
         horizontalGridLayout.addComponent(grid);
 
         grid.setWidth("100%");

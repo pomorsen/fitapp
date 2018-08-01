@@ -24,7 +24,7 @@ public class Activity {
     private String description;
     private ActivityType activityType;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<GymUser> gymUsers;
 
     public Activity(Trainer trainer, Place place, LocalDateTime startTime, int duration, int maxParticipants, double price, String description, ActivityType activityType) {
@@ -43,6 +43,11 @@ public class Activity {
 
     public void addGymUserToList(GymUser gymUser) {
         gymUsers.add(gymUser);
+    }
+
+    public int getNumberOfParticipants(){
+
+        return gymUsers.size();
     }
 
     public Long getId() {
