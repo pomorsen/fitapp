@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface GymUserRepository extends JpaRepository<GymUser,Long> {
     Optional<GymUser> findByEmailAndPassword(String email, String password);
     Optional<GymUser> findByNameAndPassword(String name, String password);
+    boolean existsTrainerByEmail(String email);
 }

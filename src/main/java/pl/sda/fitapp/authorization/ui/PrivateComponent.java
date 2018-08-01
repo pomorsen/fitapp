@@ -6,6 +6,7 @@ import com.vaadin.ui.themes.ValoTheme;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.fitapp.authorization.service.AuthService;
+import pl.sda.fitapp.domains.dto.LoggedUserDto;
 
 /**
  * @author Alejandro Duarte.
@@ -14,9 +15,9 @@ import pl.sda.fitapp.authorization.service.AuthService;
 public class PrivateComponent extends CustomComponent {
 
     public Layout getPrivateComponent() {
-        String username = (String) VaadinSession.getCurrent().getAttribute(AuthService.SESSION_USERNAME);
+        LoggedUserDto username = (LoggedUserDto) VaadinSession.getCurrent().getAttribute(AuthService.SESSION_USERNAME);
 
-        Label label = new Label("Welcome, " + username);
+        Label label = new Label("Welcome, " + username.getUsername() + " " + username.getUserType());
         label.addStyleName(ValoTheme.LABEL_HUGE);
 
         //Button button = new Button("Sign out", event -> onLogout(event));

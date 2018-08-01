@@ -12,8 +12,8 @@ import pl.sda.fitapp.service.GymUserService;
 
 import static com.vaadin.ui.Alignment.MIDDLE_CENTER;
 
-@SpringUI(path = "/register_user")
-public class RegisterUserUI extends UI {
+@SpringUI(path = "/register")
+public class RegisterUI extends UI {
 
     @Autowired
     private GymUserService gymUserService;
@@ -30,14 +30,31 @@ public class RegisterUserUI extends UI {
     protected void init(VaadinRequest vaadinRequest) {
         commonUIElement.setupLayout(rootLayout);
         rootLayout.addComponent(commonUIElement.displayHeader(Page.getCurrent()));
-        rootLayout.addComponent(userRegistrationFormElement.displayRegisterForm(UserType.USER, Page.getCurrent()));
+        displayRegistrationOption();
         setContent(rootLayout);
     }
 
+    private void displayRegistrationOption() {
+        HorizontalLayout horizontalLayout = new HorizontalLayout();
+        horizontalLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
+        horizontalLayout.setWidth("60%");
+        horizontalLayout.setCaption("Wybierz rodzaj rejestrowanego użytkownika aplikacji:");
 
 
 
+        Button registerTrainerButton = new Button("Trener!");
+        registerTrainerButton.addClickListener(event -> {
+            getPage().setLocation("/register_trainer");
+        });
 
+        Button registerUserButton = new Button("Użytkownik!");
+        registerUserButton.addClickListener(event -> {
+            getPage().setLocation("/register_user");
+        });
+
+        horizontalLayout.addComponentsAndExpand(registerTrainerButton,registerUserButton);
+        rootLayout.addComponent(horizontalLayout);
+    }
 
 
 }

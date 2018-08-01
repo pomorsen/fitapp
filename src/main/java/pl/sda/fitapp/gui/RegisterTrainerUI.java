@@ -25,22 +25,16 @@ public class RegisterTrainerUI extends UI {
     private TrainerRegistrationFormElement userRegistrationFormElement;
 
 
-    private VerticalLayout rootLayout;
+    private VerticalLayout rootLayout = new VerticalLayout();
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-        setupLayout();
+        commonUIElement.setupLayout(rootLayout);
         rootLayout.addComponent(commonUIElement.displayHeader(Page.getCurrent()));
-        rootLayout.addComponent(userRegistrationFormElement.displayRegisterForm(UserType.TRAINER));
-//            addTodoList();
-//            addDeleteButton();
-    }
-
-    private void setupLayout() {
-        rootLayout = new VerticalLayout();
-        rootLayout.setDefaultComponentAlignment(MIDDLE_CENTER);
+        rootLayout.addComponent(userRegistrationFormElement.displayRegisterForm(UserType.TRAINER, Page.getCurrent()));
         setContent(rootLayout);
     }
+
 
 
 }

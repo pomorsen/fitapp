@@ -6,14 +6,13 @@ import com.vaadin.server.VaadinSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.fitapp.domains.UserType;
+import pl.sda.fitapp.domains.dto.LoggedUserDto;
 
 import javax.servlet.http.Cookie;
 import java.util.Arrays;
 import java.util.Optional;
 
-/**
- * @author Alejandro Duarte.
- */
+
 @Service
 public class AuthService {
 
@@ -27,11 +26,12 @@ public class AuthService {
         return VaadinSession.getCurrent().getAttribute(SESSION_USERNAME) != null || loginRememberedUser();
     }
 
-    public Long login(String username, String password, boolean rememberMe, String userType) {
-            if (userService.isAuthenticUser(username, password, userType) > 0) {
-            VaadinSession.getCurrent().setAttribute(SESSION_USERNAME, username);
+    public Long login(String username, String password, boolean rememberMe, UserType userType) {
+        if (userService.isAuthenticUser(username, password, userType) > 0) {
+            LoggedUserDto loggedUserDto = new LoggedUserDto(username, userType);
+            VaadinSession.getCurrent().setAttribute(SESSION_USERNAME, loggedUserDto);
             if (rememberMe) {
-                rememberUser(username);
+                rememberUser(loggedUserDto);
             }
             return 1L;
         }
@@ -61,10 +61,10 @@ public class AuthService {
 
         if (rememberMeCookie.isPresent()) {
             String id = rememberMeCookie.get().getValue();
-            String username = UserService.getRememberedUser(id);
+            LoggedUserDto username = UserService.getRememberedUser(id);
 
             if (username != null) {
-                VaadinSession.getCurrent().setAttribute(SESSION_USERNAME, username);
+                VaadinSession.getCurrent().setAttribute(SESSION_USERNAME, username.getUsername() + " " + username.getUserType());
                 return true;
             }
         }
@@ -72,8 +72,8 @@ public class AuthService {
         return false;
     }
 
-    private static void rememberUser(String username) {
-        String id = UserService.rememberUser(username);
+    private static void rememberUser(LoggedUserDto loggedUserDto) {
+        String id = UserService.rememberUser(loggedUserDto);
 
         Cookie cookie = new Cookie(COOKIE_NAME, id);
         cookie.setPath("/");

@@ -23,14 +23,9 @@ public class PublicComponent extends CustomComponent {
 
     public Layout getPublicComponent() {
 
-        List<String> userTypes = Arrays.asList("Użytkownik", "Trener");
-        RadioButtonGroup<String> userType = new RadioButtonGroup<>("Wybierz rodzaj użytkownika", userTypes);
-
-        userType.addValueChangeListener(event -> Notification.show("Value changed:",
-                String.valueOf(event.getValue()),
-                Notification.Type.TRAY_NOTIFICATION));
-        //
-        userType.setSelectedItem("Użytkownik");
+        List<UserType> userTypes = Arrays.asList(UserType.values());
+        RadioButtonGroup<UserType> userType = new RadioButtonGroup<>("Wybierz rodzaj użytkownika", userTypes);
+        userType.setSelectedItem(UserType.USER);
 
         TextField username = new TextField("Username");
         username.focus();
@@ -56,13 +51,13 @@ public class PublicComponent extends CustomComponent {
         return (layout);
     }
 
-    private void onLogin(String username, String password, boolean rememberMe, String userType) {
+    private void onLogin(String username, String password, boolean rememberMe, UserType userType) {
         if (authService.login(username, password, rememberMe, userType) > 0) {
             VaadinUI ui = (VaadinUI) UI.getCurrent();
             ui.getPage().reload();
             ui.showPrivateComponent();
         } else {
-            Notification.show("Invalid credentials (for demo use: admin/password)", Notification.Type.ERROR_MESSAGE);
+            Notification.show("Invalid credentials", Notification.Type.ERROR_MESSAGE);
         }
     }
 

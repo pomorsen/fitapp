@@ -4,15 +4,18 @@ import com.vaadin.data.Binder;
 import com.vaadin.data.Validator;
 import com.vaadin.data.validator.EmailValidator;
 import com.vaadin.data.validator.StringLengthValidator;
+import com.vaadin.server.Page;
 import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.fitapp.domains.GymUser;
 import pl.sda.fitapp.domains.Trainer;
 import pl.sda.fitapp.domains.UserType;
+import pl.sda.fitapp.repositories.TrainerRepository;
 import pl.sda.fitapp.service.TrainerService;
 
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class TrainerRegistrationFormElement {
@@ -20,12 +23,21 @@ public class TrainerRegistrationFormElement {
     @Autowired
     private TrainerService trainerService;
 
-    public Layout displayRegisterForm(UserType userType) {
+    @Autowired
+    private TrainerRepository trainerRepository;
+
+    public Layout displayRegisterForm(UserType userType, Page page) {
+
+        VerticalLayout mainFormLayout = new VerticalLayout();
+        mainFormLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
+        mainFormLayout.setWidth("25%");
+
 
         FormLayout formLayout = new FormLayout();
         formLayout.setSpacing(false);
         formLayout.setMargin(false);
         formLayout.setCaption("Trainer Registration Form");
+        formLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
         TextField nameField = new TextField("First Name");
         TextField surnameField = new TextField("Last Name");
@@ -76,7 +88,16 @@ public class TrainerRegistrationFormElement {
         Button registerButton = new Button("Register");
         registerButton.setEnabled(false);
         registerButton.addClickListener(
-                event -> trainerService.registerTrainer(binder.getBean()));
+                event -> {
+                    //sprawdź czy istnieje
+                    if (trainerRepository.existsTrainerByEmail(emailField.getValue())) {
+                        Notification.show("Trener z adresem e-mail " + emailField.getValue() + " już istnieje!", Notification.Type.ERROR_MESSAGE);
+                    } else {
+                        Notification.show("Zarejestrowano!");
+                        trainerService.registerTrainer(binder.getBean());
+                        page.setLocation("/auth_login");
+                    }
+                });
 
         binder.addStatusChangeListener(
                 event -> registerButton.setEnabled(binder.isValid()));
@@ -92,7 +113,9 @@ public class TrainerRegistrationFormElement {
                 registerButton
         );
 
-        return formLayout;
+        mainFormLayout.addComponent(formLayout);
+
+        return mainFormLayout;
     }
 
 }

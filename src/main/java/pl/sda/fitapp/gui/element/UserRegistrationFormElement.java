@@ -4,12 +4,14 @@ import com.vaadin.data.Binder;
 import com.vaadin.data.Validator;
 import com.vaadin.data.validator.EmailValidator;
 import com.vaadin.data.validator.StringLengthValidator;
+import com.vaadin.server.Page;
 import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.fitapp.domains.GymUser;
 import pl.sda.fitapp.domains.Trainer;
 import pl.sda.fitapp.domains.UserType;
+import pl.sda.fitapp.repositories.GymUserRepository;
 import pl.sda.fitapp.service.GymUserService;
 import pl.sda.fitapp.service.TrainerService;
 
@@ -21,7 +23,15 @@ public class UserRegistrationFormElement {
     @Autowired
     private GymUserService gymUserService;
 
-    public Layout displayRegisterForm(UserType userType) {
+    @Autowired
+    private GymUserRepository gymUserRepository;
+
+    public Layout displayRegisterForm(UserType userType, Page page) {
+
+        VerticalLayout mainFormLayout = new VerticalLayout();
+        mainFormLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
+        mainFormLayout.setWidth("25%");
+
 
         FormLayout formLayout = new FormLayout();
         formLayout.setSpacing(false);
@@ -77,8 +87,16 @@ public class UserRegistrationFormElement {
         Button registerButton = new Button("Register");
         registerButton.setEnabled(false);
         registerButton.addClickListener(
-                event -> gymUserService.registerUser(binder.getBean()));
-
+                event -> {
+                    //sprawdź czy istnieje
+                    if (gymUserRepository.existsTrainerByEmail(emailField.getValue())) {
+                        Notification.show("Użytkownik z adresem e-mail " + emailField.getValue() + " już istnieje!", Notification.Type.ERROR_MESSAGE);
+                    } else {
+                        Notification.show("Zarejestrowano!");
+                        gymUserService.registerUser(binder.getBean());
+                        page.setLocation("/auth_login");
+                    }
+                });
         binder.addStatusChangeListener(
                 event -> registerButton.setEnabled(binder.isValid()));
 
@@ -93,7 +111,9 @@ public class UserRegistrationFormElement {
                 registerButton
         );
 
-        return formLayout;
+        mainFormLayout.addComponent(formLayout);
+
+        return mainFormLayout;
     }
 
 }

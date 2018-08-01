@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface TrainerRepository extends JpaRepository<Trainer,Long> {
     Optional<Trainer> findByEmailAndPassword(String email, String password);
     Optional<Trainer> findByNameAndPassword(String name, String password);
-
+    boolean existsTrainerByEmail(String email);
 }

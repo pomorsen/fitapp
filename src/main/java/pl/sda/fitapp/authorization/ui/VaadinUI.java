@@ -11,9 +11,6 @@ import pl.sda.fitapp.gui.element.CommonUIElement;
 
 import static com.vaadin.ui.Alignment.MIDDLE_CENTER;
 
-/**
- * @author Alejandro Duarte.
- */
 @SpringUI(path = "/auth_login")
 public class VaadinUI extends UI {
 

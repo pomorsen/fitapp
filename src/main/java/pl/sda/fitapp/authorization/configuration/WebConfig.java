@@ -6,9 +6,7 @@ import pl.sda.fitapp.authorization.ui.VaadinUI;
 
 import javax.servlet.annotation.WebServlet;
 
-/**
- * @author Alejandro Duarte.
- */
+
 public class WebConfig {
     @WebServlet(urlPatterns = "/*", asyncSupported = true)
     @VaadinServletConfiguration(ui = VaadinUI.class, productionMode = false)
