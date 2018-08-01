@@ -4,6 +4,7 @@ import com.vaadin.server.FileResource;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinSession;
+import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,13 +17,11 @@ import sun.rmi.runtime.Log;
 
 import java.io.File;
 
-import static com.vaadin.ui.Alignment.MIDDLE_CENTER;
-import static com.vaadin.ui.Alignment.MIDDLE_LEFT;
-import static com.vaadin.ui.Alignment.MIDDLE_RIGHT;
+import static com.vaadin.ui.Alignment.*;
 import static pl.sda.fitapp.authorization.service.AuthService.SESSION_USERNAME;
 
 @Service
-public class CommonUIElement{
+public class CommonUIElement {
 
     @Autowired
     private AuthService authService;
@@ -37,13 +36,16 @@ public class CommonUIElement{
         // Horizontal panel which will hold 2 labels - logo + menu
         HorizontalLayout menuBarLayout = new HorizontalLayout();
         menuBarLayout.setWidth("100%");
-        menuBarLayout.setHeight("100");
+        menuBarLayout.setHeight("80");
 
         // Logo
         FileResource logoResource = new FileResource(new File("img/logo.jpg"));
         Image logo = new Image(null, logoResource);
         logo.setWidth("80");
         logo.setHeight("80");
+        logo.addClickListener(event -> {
+            page.setLocation("/");
+        });
 
 
         // Context menu
@@ -69,20 +71,17 @@ public class CommonUIElement{
         if (isLogged) {
 
             //if logged user is trainer
-            Object attribute = VaadinSession.getCurrent().getAttribute(SESSION_USERNAME);
-            if (attribute instanceof LoggedUserDto){
-                LoggedUserDto loggedUserDto = (LoggedUserDto) attribute;
-                if(loggedUserDto.getUserType().equals(UserType.TRAINER)){
-                    Button registerNewTrainingButton = new Button("Dodaj nowy trening");
-                    mainMenuButtonsLayout.addComponentsAndExpand(registerNewTrainingButton);
-                }
+            LoggedUserDto loggedUserDto = (LoggedUserDto) VaadinSession.getCurrent().getAttribute(SESSION_USERNAME);
+            if (loggedUserDto.getUserType().equals(UserType.TRAINER)) {
+                Button registerNewTrainingButton = new Button("Dodaj nowy trening");
+                mainMenuButtonsLayout.addComponentsAndExpand(registerNewTrainingButton);
             }
 
 
             //wyloguj
             Button logoutButton = new Button("Wyloguj");
             logoutButton.addClickListener(event -> {
-               authService.logOut();
+                authService.logOut();
             });
 
             //moje konto
@@ -112,7 +111,7 @@ public class CommonUIElement{
         menuBarLayout.setComponentAlignment(logo, MIDDLE_LEFT);
         menuBarLayout.setExpandRatio(logo, 3);
 
-        menuBarLayout.addComponents(mainMenuButtonsLayout,mainMenuLoginLayout);
+        menuBarLayout.addComponents(mainMenuButtonsLayout, mainMenuLoginLayout);
         menuBarLayout.setExpandRatio(mainMenuButtonsLayout, 6);
         menuBarLayout.setExpandRatio(mainMenuLoginLayout, 3);
 
@@ -121,6 +120,7 @@ public class CommonUIElement{
 
     public Layout setupLayout(VerticalLayout rootLayout) {
         rootLayout.setDefaultComponentAlignment(MIDDLE_CENTER);
+        rootLayout.setMargin(new MarginInfo(false,true,true,true));
         return rootLayout;
     }
 
